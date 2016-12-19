@@ -6,4 +6,7 @@ const places = require('./routes/places');
 
 app.use(logger('dev'));
 app.use('/v1/location', places);
+app.get("/status", (req, res) => {
+  res.send("OK")
+})
 module.exports = app
