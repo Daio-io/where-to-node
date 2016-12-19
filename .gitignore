@@ -1,0 +1,11 @@
+### IDE
+.idea
+
+### Node
+
+# Logs
+logs
+*.log
+
+# Modules
+node_modules
