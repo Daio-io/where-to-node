@@ -34,13 +34,17 @@ function buildData(response) {
     return new Promise((resolve, reject) => {
         let res = JSON.parse(response.body)
         let results = res.results.map(item => {
-            return {
+            data = {
                 name: item.name,
                 image: item.photos ? "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + item.photos[0].photo_reference + "&key=" + apiKey : null,
                 rating: item.rating,
                 vicinity: item.vicinity,
-                details: item.place_id
+                details: item.place_id,
             }
+            if (item.opening_hours) {
+                data.open_now = item.opening_hours.open_now
+            }
+            return data
         }).filter(item => {
             return item.image != null
         })
