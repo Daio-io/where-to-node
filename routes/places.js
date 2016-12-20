@@ -3,9 +3,10 @@ const service = require('./services/places-service')
 
 router.get('/:latlng', (req, res) => {
   let latlng = req.params.latlng
+  let openNow = req.query.opennow
   let type = req.query.type || "food"
 
-  service.getPlaces(latlng, type)
+  service.getPlaces(latlng, type, openNow)
     .then(response => {
       response.places = response.places.map(item => {
         item.details = req.protocol + '://' + req.get('host') + "/v1/location/detail/" + item.details
