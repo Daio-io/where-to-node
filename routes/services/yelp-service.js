@@ -14,7 +14,7 @@ exports.getPlaces = function (latlng, type, openNow) {
 }
 
 exports.getPlaceDetails = function (placeId) {
-
+    
     return got(BASE_URL + placeId, reqOptions)
         .then(buildDetails)
 }
