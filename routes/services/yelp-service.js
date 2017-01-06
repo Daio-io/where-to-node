@@ -8,7 +8,7 @@ const reqOptions = {
 exports.getPlaces = function (latlng, type, openNow) {
     let latLngSplit = latlng.split(',')
     let open_now = openNow === 'true' ? '&open_now=true' : ''
-    let url = BASE_URL + 'search?categories=bars&latitude=' +  latLngSplit[0] + "&longitude=" + latLngSplit[1] + "&radius=100" + open_now
+    let url = BASE_URL + 'search?categories=bars&latitude=' +  latLngSplit[0] + "&longitude=" + latLngSplit[1] + "&radius=1000" + open_now
     return got(url, reqOptions)
         .then(buildData)
 }
