@@ -7,7 +7,7 @@ router.get('/:latlng', (req, res) => {
   let radius = req.query.radius || "1000"
   let type = req.query.type || "bars"
 
-  service.getPlaces(latlng, type, openNow)
+  service.getPlaces(latlng, type, openNow, radius)
     .then(response => {
       response.places = response.places.map(item => {
         item.detailUrl = 'https://' + req.get('host') + "/v1/location/detail/" + item.id
