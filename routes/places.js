@@ -4,6 +4,7 @@ const service = require('./services/yelp-service')
 router.get('/:latlng', (req, res) => {
   let latlng = req.params.latlng
   let openNow = req.query.opennow
+  let radius = req.query.radius || "1000"
   let type = req.query.type || "bars"
 
   service.getPlaces(latlng, type, openNow)
