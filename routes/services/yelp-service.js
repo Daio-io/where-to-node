@@ -8,13 +8,13 @@ const reqOptions = {
 exports.getPlaces = function (latlng, type, openNow, radius) {
     let latLngSplit = latlng.split(',')
     let open_now = openNow === 'true' ? '&open_now=true' : ''
-    let url = BASE_URL + 'search?categories=' + type + '&latitude=' +  latLngSplit[0] + "&longitude=" + latLngSplit[1] + "&radius=" + radius + open_now
+    let url = BASE_URL + 'search?categories=' + type + '&latitude=' + latLngSplit[0] + "&longitude=" + latLngSplit[1] + "&radius=" + radius + open_now
     return got(url, reqOptions)
         .then(buildData)
 }
 
 exports.getPlaceDetails = function (placeId) {
-    
+
     return got(BASE_URL + placeId, reqOptions)
         .then(buildDetails)
 }
@@ -22,10 +22,11 @@ exports.getPlaceDetails = function (placeId) {
 function buildDetails(response) {
     return new Promise((resolve, reject) => {
         let res = JSON.parse(response.body)
-        let result = {
-            images: res.photos
-        }
-        resolve({result:result})   
+        let photos = res.photos.map(item => {
+            return { image: item }
+        })
+        let result = { images: photos }
+        resolve({ result: result })
     })
 }
 
