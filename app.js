@@ -13,8 +13,8 @@ app.get('/v1/types', (req, res) => {
   res.json({
     types: [
       { label: "Food", tag: "food" },
-      { label: "Restaurant", tag: "restaurant" },
-      { label: "Takeaway", tag: "meal_takeaway" },
+      { label: "Restaurant", tag: "restaurants" },
+      { label: "Takeaway", tag: "fooddeliveryservices" },
       { label: "Bar", tag: "bars" }
     ]
   })
