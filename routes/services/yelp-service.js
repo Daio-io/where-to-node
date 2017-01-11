@@ -22,10 +22,18 @@ exports.getPlaceDetails = function (placeId) {
 function buildDetails(response) {
     return new Promise((resolve, reject) => {
         let res = JSON.parse(response.body)
+        console.log(response.body)        
         let photos = res.photos.map(item => {
             return { image: item }
         })
-        let result = { images: photos }
+        let result = { 
+            name: res.name,
+            rating: res.rating,
+            location : res.coordinates,
+            phone: res.display_phone,
+            price: res.price,
+            images: photos
+         }
         resolve({ result: result })
     })
 }
