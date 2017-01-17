@@ -1,4 +1,5 @@
 const got = require('got')
+const removeDiacritics = require('diacritics').remove;
 const apiKey = process.env.YELP_TOKEN
 const BASE_URL = 'https://api.yelp.com/v3/businesses/'
 const reqOptions = {
@@ -14,7 +15,6 @@ exports.getPlaces = function (latlng, type, openNow, radius) {
 }
 
 exports.getPlaceDetails = function (placeId) {
-
     return got(BASE_URL + placeId, reqOptions)
         .then(buildDetails)
 }
@@ -22,7 +22,6 @@ exports.getPlaceDetails = function (placeId) {
 function buildDetails(response) {
     return new Promise((resolve, reject) => {
         let res = JSON.parse(response.body)
-        console.log(response.body)        
         let photos = res.photos.map(item => {
             return { image: item }
         })
@@ -43,8 +42,9 @@ function buildData(response) {
         let res = JSON.parse(response.body)
         let results = res.businesses.map(item => {
             let openNow = !item.is_closed
+            let cleanedId = removeDiacritics(item.id)
             data = {
-                id: item.id,
+                id: cleanedId,
                 name: item.name,
                 rating: item.rating,
                 vicinity: item.location.address1,
