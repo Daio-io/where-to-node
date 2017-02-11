@@ -53,6 +53,7 @@ function buildData(response) {
                 rating: item.rating,
                 vicinity: item.location.address1,
                 image: item.image_url,
+                distance: item.distance,
                 open_now: openNow
             }
             return data
