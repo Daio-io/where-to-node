@@ -7,6 +7,10 @@ const places = require('./routes/places');
 const http = require('http');
 
 app.use(logger('dev'));
+app.use((req, res, next) => {
+  res.set('Cache-Control', `max-age=${config.CACHE}`);
+  next()
+});
 app.use('/v1/location', places);
 app.get("/status", (req, res) => {
   res.send("OK")
@@ -21,11 +25,6 @@ app.get('/v1/types', (req, res) => {
     ]
   })
 })
-
-app.use((req, res, next) => {
-  res.set('Cache-Control', `max-age=${config.CACHE}`);
-  next()
-});
 
 const server = http.createServer(app);
 
