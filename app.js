@@ -21,7 +21,8 @@ app.get('/v1/types', (req, res) => {
       { label: "Food", tag: "food" },
       { label: "Restaurant", tag: "restaurants" },
       { label: "Takeaway", tag: "fooddeliveryservices" },
-      { label: "Bar", tag: "bars" }
+      { label: "Bar", tag: "bars" },
+      { label: "Coffee & Tea", tag: "coffee" }
     ]
   })
 })
