@@ -25,13 +25,17 @@ function buildDetails(response) {
         let photos = res.photos.map(item => {
             return { image: item }
         })
+
         let result = { 
             name: res.name,
             rating: res.rating,
             location : res.coordinates,
             phone: res.display_phone,
             price: res.price,
-            images: photos
+            images: photos,
+            review_count: res.review_count,
+            web_url: res.url,
+            is_open: !res.is_closed
          }
         resolve({ result: result })
     })
