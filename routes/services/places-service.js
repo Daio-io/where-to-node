@@ -3,7 +3,7 @@ const apiKey = process.env.GOOGLE_API_KEY
 
 exports.getPlaces = function (latlng, type, openNow) {
     let open_now = openNow === 'true' ? '&opennow' : ''
-    return got("https://maps.googleapis.com/maps/api/place/nearbysearch/json?&location=" + latlng + open_now + "&sort_by=distance&type=" + type + "&key=" + apiKey)
+    return got("https://maps.googleapis.com/maps/api/place/nearbysearch/json?&location=" + latlng + open_now + "&rankby=distance&type=" + type + "&key=" + apiKey)
         .then(buildData)
 }
 
