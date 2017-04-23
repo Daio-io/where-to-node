@@ -19,6 +19,18 @@ exports.getPlaceDetails = function (placeId) {
         .then(buildDetails)
 }
 
+exports.getReviews = function(placeId) {
+    return got(BASE_URL + placeId + '/reviews', reqOptions)
+        .then(buildReviews)
+}
+
+function buildReviews(response) {
+    return new Promise((resolve, reject) => {
+        let res = JSON.parse(response.body)
+        resolve(res)
+    })
+}
+
 function buildDetails(response) {
     return new Promise((resolve, reject) => {
         let res = JSON.parse(response.body)
